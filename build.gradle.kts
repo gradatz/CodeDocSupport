@@ -2,24 +2,41 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "1.9.25"
-    id("org.jetbrains.intellij") version "1.17.4"
+    id("org.jetbrains.kotlin.jvm") version "2.2.10"
+    id("org.jetbrains.intellij.platform") version "2.3.0"
 }
 
 group = "com.grit.intellij"
-version = "1.0"
+version = "2.0"
 
 repositories {
     mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 // Configure Gradle IntelliJ Plugin
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-intellij {
-    version.set("2023.2.8")
-    type.set("IC") // Target IDE Platform
+dependencies {
+    intellijPlatform {
+        create("IC", "2023.2.8")
+        testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
+        bundledPlugin("com.intellij.java")
+    }
+}
 
-    plugins.set(listOf("com.intellij.java"))
+intellijPlatform {
+    pluginConfiguration {
+        ideaVersion {
+            sinceBuild = "232"
+//        untilBuild = "242.*" -- open-end compatibility
+        }
+
+        changeNotes = """
+      Support cross-module links, and links to methods as well
+    """.trimIndent()
+    }
 }
 
 kotlin {
@@ -33,11 +50,6 @@ tasks {
     withType<JavaCompile> {
         sourceCompatibility = "17"
         targetCompatibility = "17"
-    }
-
-    patchPluginXml {
-        sinceBuild.set("232")
-//        untilBuild.set("242.*") -- open-end compatibility
     }
 
     signPlugin {

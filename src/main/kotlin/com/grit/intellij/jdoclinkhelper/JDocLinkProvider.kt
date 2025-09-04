@@ -40,10 +40,29 @@ class JDocLinkProvider : DumbAwareCopyPathProvider() {
             null -> null
             is PsiJavaFile -> element.classes.mapNotNull { it.qualifiedName }
             is PsiClass -> element.qualifiedName?.let { listOf(it) }
-            is PsiMethod ->
-                // todo support method links with full param signature. Examples here: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html
-                outerScope(PsiTreeUtil.getParentOfType(element, PsiClass::class.java))
+            is PsiMethod -> listOf(methodSignature(element))
             else -> outerScope(PsiTreeUtil.getParentOfType(element, PsiMethod::class.java))
         }
+    }
+
+    /** Method signature including a full list of all parameters. Types of typed parameters are removed. */
+    private fun methodSignature(m: PsiMethod): String {
+        val clzName = PsiTreeUtil.getParentOfType(m, PsiClass::class.java)!!.qualifiedName
+        val methodName = m.name
+
+        val params = mutableListOf<String>()
+        val pl = m.parameterList
+
+        for (i in 0 until pl.parametersCount) {
+            params.add(cutTypeParameters(pl.getParameter(i)!!.type.canonicalText))
+        }
+
+        return "$clzName#$methodName(${params.joinToString(",")})"
+    }
+
+    private fun cutTypeParameters(canonicalText: String): String {
+        val start = canonicalText.indexOf('<')
+        val end = canonicalText.indexOf('>')
+        return if (start in 0..end) canonicalText.removeRange(start, end+1) else canonicalText
     }
 }

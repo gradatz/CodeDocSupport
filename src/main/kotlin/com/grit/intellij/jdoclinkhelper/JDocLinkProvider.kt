@@ -14,6 +14,8 @@ import com.intellij.psi.util.PsiTreeUtil
 
 class JDocLinkProvider : DumbAwareCopyPathProvider() {
 
+    private val mavenModuleAnalyzer = MavenModuleAnalyzer()
+
     override fun getQualifiedName(
         project: Project,
         elements: List<PsiElement>,
@@ -29,7 +31,7 @@ class JDocLinkProvider : DumbAwareCopyPathProvider() {
     }
 
     private fun linkTo(element: PsiElement): List<String> {
-        val modulename = ModuleUtil.findModuleForPsiElement(element)?.name ?: ""
+        val modulename = mavenModuleAnalyzer.findMavenModulePath(element)
         val containerNames = outerScope(element)
         return containerNames?.map { "<jdoc://$modulename/$it>" } ?: listOf()
     }
@@ -57,7 +59,7 @@ class JDocLinkProvider : DumbAwareCopyPathProvider() {
             params.add(cutTypeParameters(pl.getParameter(i)!!.type.canonicalText))
         }
 
-        return "$clzName#$methodName(${params.joinToString(",")})"
+        return "${clzName}#${methodName}(${params.joinToString(",")})"
     }
 
     private fun cutTypeParameters(canonicalText: String): String {

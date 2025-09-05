@@ -1,8 +1,8 @@
-package com.grit.intellij.jdoclinkhelper
+package com.grit.intellij.cds
 
 import com.intellij.openapi.util.IconLoader
 
-object MyIcons {
+object Icons {
     @JvmField
     val JDocLinkActionIcon = IconLoader.getIcon("/jdoclink-action.svg", javaClass)
 

@@ -1,10 +1,9 @@
-package com.grit.intellij.jdoclinkhelper
+package com.grit.intellij.cds
 
 import com.intellij.ide.actions.DumbAwareCopyPathProvider
 import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.editor.Editor
-import com.intellij.openapi.module.ModuleUtil
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement

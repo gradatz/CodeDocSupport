@@ -5,4 +5,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = "JDocLinkHelper"
+rootProject.name = "CodeDocSupport"

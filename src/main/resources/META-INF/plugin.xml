@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.grit.intellij.JDocLinkHelper</id>
-    <name>JDocLinkHelper</name>
+    <id>com.grit.intellij.CodeDocSupport</id>
+    <name>CodeDocSupport</name>
     <vendor email="gerhard.radatz@gmail.com" url="https://www.grit.at">Gerhard Radatz</vendor>
     <description><![CDATA[
     Copy a reference to the current class' JavaDoc as a link in the jdoc:// format to the clipboard.
@@ -11,11 +11,11 @@
 
     <actions>
         <action
-                id="com.grit.intellij.JDocLinkHelper.CopyJDocLink"
-                class="com.grit.intellij.jdoclinkhelper.JDocLinkProvider"
+                id="com.grit.intellij.codedocsupport.CopyJDocLink"
+                class="com.grit.intellij.cds.JDocLinkProvider"
                 text="JDoc Link"
                 description="Copy as JDoc Link"
-                icon="com.grit.intellij.jdoclinkhelper.MyIcons.JDocLinkActionIcon">
+                icon="com.grit.intellij.cds.Icons.JDocLinkActionIcon">
             <add-to-group group-id="CopyReferencePopupGroup"/>
             <add-to-group group-id="Copy.Paste.Special" anchor="before" relative-to-action="EditorPasteSimple"/>
         </action>

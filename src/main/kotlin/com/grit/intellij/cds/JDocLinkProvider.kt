@@ -30,9 +30,11 @@ class JDocLinkProvider : DumbAwareCopyPathProvider() {
     }
 
     private fun linkTo(element: PsiElement): List<String> {
-        val modulename = mavenModuleAnalyzer.findMavenModulePath(element)
         val containerNames = outerScope(element)
-        return containerNames?.map { "<jdoc://$modulename/$it>" } ?: listOf()
+        return if (containerNames?.isNotEmpty() == true) {
+            val modulename = mavenModuleAnalyzer.findMavenModulePath(element)
+            containerNames.map { "<jdoc://$modulename/$it>" }
+        } else emptyList()
     }
 
     /** Finds the enclosing Java class or method. If a file is selected in the project tree, returns all classes in the file. */

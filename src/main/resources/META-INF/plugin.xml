@@ -8,6 +8,7 @@
   ]]></description>
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
+    <depends>org.intellij.plugins.markdown</depends>
 
     <actions>
         <action
@@ -20,5 +21,9 @@
             <add-to-group group-id="Copy.Paste.Special" anchor="before" relative-to-action="EditorPasteSimple"/>
         </action>
     </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+      <lang.foldingBuilder language="Markdown" implementationClass="com.grit.intellij.cds.JDocLinkFoldingBuilder"/>
+    </extensions>
 
 </idea-plugin>

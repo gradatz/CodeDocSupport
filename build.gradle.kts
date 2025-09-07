@@ -23,6 +23,7 @@ dependencies {
         create("IC", "2023.2.8")
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
         bundledPlugin("com.intellij.java")
+        bundledPlugin("org.intellij.plugins.markdown")
     }
 }
 
@@ -34,7 +35,8 @@ intellijPlatform {
         }
 
         changeNotes = """
-      Support cross-module links, and links to methods as well
+      Supports cross-module links, and links to methods as well. 
+      Added Folding Support for links in markdown files. 
     """.trimIndent()
     }
 }

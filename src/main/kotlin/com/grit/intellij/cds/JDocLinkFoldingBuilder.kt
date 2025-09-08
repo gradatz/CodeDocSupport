@@ -20,8 +20,6 @@ private const val END_PATTERN = ">"
 /** @see https://github.com/JetBrains/intellij-community/blob/master/plugins/markdown/core/src/org/intellij/plugins/markdown/folding/MarkdownFoldingBuilder.kt */
 class JDocLinkFoldingBuilder : CustomFoldingBuilder(), DumbAware {
 
-    private val docFoldingGroup = FoldingGroup.newGroup("<jdoc://")
-
     override fun buildLanguageFoldRegions(descriptors: MutableList<FoldingDescriptor>, root: PsiElement, document: Document, quick: Boolean) {
         if (root.language !== root.containingFile.viewProvider.baseLanguage) {
             return
@@ -63,7 +61,7 @@ class JDocLinkFoldingBuilder : CustomFoldingBuilder(), DumbAware {
         return FoldingDescriptor(
             paragraph.node,
             TextRange(start + offset + 1, end + offset),
-            docFoldingGroup,
+            null,
             placeHolderText(text.substring(start + START_PATTERN.length, end)),
             true,
             emptySet()

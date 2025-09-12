@@ -45,12 +45,7 @@
          id="stop2" /><stop
          offset="0.93739"
          stop-color="#6B57FF"
-         id="stop3" /></linearGradient></defs><circle
-     style="fill:#aaaaaa;fill-opacity:0.48285455;stroke:#9a9a9a;stroke-width:1.63852;stroke-linecap:round;stroke-dasharray:none;stroke-dashoffset:18.8976;stroke-opacity:1"
-     id="path8"
-     cx="20.050781"
-     cy="20.050781"
-     r="18.51185" /><g
+         id="stop3" /></linearGradient></defs><g
      id="g5"
      transform="translate(-4.611803)"
      style="fill:#00ff00;stroke:#c6e9af;stroke-width:1.66667;stroke-dasharray:none;stroke-opacity:1"><path

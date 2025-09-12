@@ -50,7 +50,7 @@ internal class MavenModuleAnalyzer {
 
             if (artifactId == null) return ""
             if (groupId != null) return "[${groupId}.${artifactId}]"
-            return "[${parentGroupId}[<${parentArtifactId}].${artifactId}]"
+            return "[${parentGroupId}[~${parentArtifactId}].${artifactId}]"
         }
     }
 

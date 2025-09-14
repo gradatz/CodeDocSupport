@@ -1,4 +1,4 @@
-package com.grit.intellij.cds
+package com.grit.ideaplugins.cds
 
 import com.intellij.openapi.module.ModuleUtil
 import com.intellij.openapi.roots.ModuleRootManager

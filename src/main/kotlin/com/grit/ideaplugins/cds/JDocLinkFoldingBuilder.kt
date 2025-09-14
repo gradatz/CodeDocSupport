@@ -1,15 +1,12 @@
-package com.grit.intellij.cds
+package com.grit.ideaplugins.cds
 
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.CustomFoldingBuilder
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
-import com.intellij.openapi.editor.FoldingGroup
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import com.intellij.refactoring.suggested.endOffset
-import com.intellij.refactoring.suggested.startOffset
 import org.intellij.plugins.markdown.lang.psi.MarkdownElementVisitor
 import org.intellij.plugins.markdown.lang.psi.impl.MarkdownParagraph
 
@@ -40,8 +37,8 @@ class JDocLinkFoldingBuilder : CustomFoldingBuilder(), DumbAware {
     }
 
     private fun addFoldingRegions(descriptors: MutableList<FoldingDescriptor>, paragraph: MarkdownParagraph) {
-        val start = paragraph.startOffset
-        val end = paragraph.endOffset
+        val start = paragraph.textRange.startOffset
+        val end = paragraph.textRange.endOffset
         val text = paragraph.text
 
         var i = start

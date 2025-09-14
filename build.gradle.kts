@@ -6,8 +6,8 @@ plugins {
     id("org.jetbrains.intellij.platform") version "2.9.0"
 }
 
-group = "com.grit.intellij"
-version = "2.0"
+group = "com.grit.ideaplugins"
+version = "2.0.1"
 
 repositories {
     mavenCentral()
@@ -23,6 +23,7 @@ dependencies {
         create("IC", "2023.2.8")
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
         bundledPlugin("com.intellij.java")
+        bundledPlugin("org.jetbrains.kotlin")
         bundledPlugin("org.intellij.plugins.markdown")
     }
 }
@@ -55,12 +56,12 @@ tasks {
     }
 
     signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+        certificateChainFile = file(providers.environmentVariable("JETBRAINS_MARKETPLACE_CERTIFICATE_CHAIN"))
+        privateKeyFile = file(providers.environmentVariable("JETBRAINS_MARKETPLACE_PRIVATE_KEY"))
+        password.set(providers.environmentVariable("JETBRAINS_MARKETPLACE_PRIVATE_KEY_PASSWORD"))
     }
 
     publishPlugin {
-        token.set(System.getenv("PUBLISH_TOKEN"))
+        token.set(providers.environmentVariable("JETBRAINS_MARKETPLACE_PUBLISH_TOKEN"))
     }
 }

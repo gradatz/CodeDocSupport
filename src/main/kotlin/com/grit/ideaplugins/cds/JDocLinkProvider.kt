@@ -1,4 +1,4 @@
-package com.grit.intellij.cds
+package com.grit.ideaplugins.cds
 
 import com.intellij.ide.actions.DumbAwareCopyPathProvider
 import com.intellij.openapi.actionSystem.*

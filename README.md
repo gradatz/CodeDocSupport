@@ -29,7 +29,7 @@ As always within JetBrains IDEs, you can unfold/fold again by pressing `Ctrl-<Ke
 
 ## Limitations
 
-Classes which belong to another module than the markdown where you want to put the reference, need to be declared as depenency in the project's
+Classes which belong to another module than the markdown where you want to put the reference, need to be declared as dependency in the project's
 Maven `pom.xml` (either as direct `dependency` or in the `dependencyManagement` section of the parent POM).
 
 Only classes which are part of the production code source can be referenced (that is, no test code).

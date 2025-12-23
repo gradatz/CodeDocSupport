@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.grit.ideaplugins"
-version = "2.0.2"
+version = "2.0.3"
 
 repositories {
     mavenCentral()
@@ -32,7 +32,7 @@ intellijPlatform {
     pluginConfiguration {
         ideaVersion {
             sinceBuild = "232"
-            untilBuild = "252.*"
+            untilBuild = "253.*"
         }
 
         changeNotes = """
